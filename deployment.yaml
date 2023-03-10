@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: jenkins-pod
+  labels:
+    app: jenkins-pod
+spec:
+  selector:
+    matchLabels:
+      app: jenkins-pod
+  replicas: 2 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: jenkins-pod
+    spec:
+      containers:
+        - name: jenkins-pod
+          image: gauravdu/devops-integration
+          ports:
+            - containerPort: 9596
+# The port that the container is running on in the cluster
